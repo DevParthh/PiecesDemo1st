@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Stat Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat {
+            margin: 20px 0;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cricket Stat</h1>
+        <div id="statDisplay" class="stat"></div>
+        <button id="nextStat">Next Stat</button>
+    </div>
+    <script>
+        const cricketStats = [
+            {
+                "stat": "Most Runs in ODI",
+                "player": "Sachin Tendulkar",
+                "runs": 18426,
+                "matches": 463
+            },
+            {
+                "stat": "Most Wickets in ODI",
+                "player": "Muttiah Muralitharan",
+                "wickets": 534,
+                "matches": 350
+            },
+            {
+                "stat": "Highest Individual Score in ODI",
+                "player": "Rohit Sharma",
+                "score": 264,
+                "date": "2014-11-13"
+            },
+            {
+                "stat": "Most Runs in Test",
+                "player": "Sachin Tendulkar",
+                "runs": 15921,
+                "matches": 200
+            },
+            {
+                "stat": "Most Wickets in Test",
+                "player": "Muttiah Muralitharan",
+                "wickets": 800,
+                "matches": 133
+            },
+            {
+                "stat": "Highest Individual Score in Test",
+                "player": "Brian Lara",
+                "score": 400,
+                "date": "2004-04-10"
+            },
+            {
+                "stat": "Most Sixes in International Cricket",
+                "player": "Chris Gayle",
+                "sixes": 553
+            },
+            {
+                "stat": "Fastest Century in ODI",
+                "player": "AB de Villiers",
+                "balls": 31,
+                "date": "2015-01-18"
+            },
+            {
+                "stat": "Most Catches in ODI",
+                "player": "Sachin Tendulkar",
+                "catches": 140
+            },
+            {
+                "stat": "Most Matches Played in International Cricket",
+                "player": "Sachin Tendulkar",
+                "matches": 664
+            }
+        ];
+
+        let currentStatIndex = 0;
+
+        function displayStat() {
+            const statDisplay = document.getElementById('statDisplay');
+            const stat = cricketStats[currentStatIndex];
+            statDisplay.innerHTML = `${stat.stat}: ${stat.player} - ${stat.runs || stat.wickets || stat.score || stat.sixes || stat.catches || stat.matches} ${stat.runs ? 'runs' : stat.wickets ? 'wickets' : stat.score ? 'score' : stat.sixes ? 'sixes' : stat.catches ? 'catches' : 'matches'}`;
+        }
+
+        document.getElementById('nextStat').addEventListener('click', () => {
+            currentStatIndex = (currentStatIndex + 1) % cricketStats.length;
+            displayStat();
+        });
+
+        // Display the first stat on load
+        displayStat();
+    </script>
+</body>
+</html>
